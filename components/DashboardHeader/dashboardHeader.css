@@ -1,0 +1,33 @@
+.dashboardContainer {
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary);
+  padding: 0 2rem;
+}
+.avtar {
+  height: 2rem;
+  width: 2rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.avtar img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.profileTitle,
+.redirectLinkTree {
+  margin-right: 0.8rem;
+  font-size: small;
+  font-weight: 300;
+}
+.porfileCta {
+  display: flex;
+  align-items: center;
+}
+.logout {
+  margin: 0 1rem;
+  cursor: pointer;
+}

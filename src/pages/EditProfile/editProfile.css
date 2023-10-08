@@ -1,0 +1,50 @@
+.editProfileContainer {
+  height: auto;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5rem 0;
+}
+.editProfileContainerInner {
+  width: 50%;
+  height: auto;
+}
+.editUserInfo,
+.editUserSocials {
+  display: flex;
+  flex-direction: column;
+}
+.editUserInfo input,
+.editUserSocials input {
+  padding: 1rem;
+  width: 30rem;
+}
+.editUserInfo form,
+.editUserSocials form {
+  border: none;
+  height: 100%;
+  width: 100%;
+}
+.editUserInfo button,
+.editUserSocials button {
+  margin-top: 1rem;
+  border: 1px solid var(--primary);
+  font-weight: 500;
+}
+.editUserInfoTitle,
+.editUserSocialsTitle {
+  text-align: center;
+  font-size: 24px;
+  text-transform: capitalize;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.editUserSocials {
+  margin-top: 3rem;
+}
+form input::placeholder {
+  color: #ee4e34 !important;
+}
