@@ -1,13 +1,22 @@
 import "./login.css";
 import "../../../public/styles.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout } from "../../slices/authSlice";
 import axios from "axios";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated]);
   function handleSubmit(e) {
     setErrorMsg("");
     e.preventDefault();
@@ -18,8 +27,7 @@ const Login = () => {
       })
       .then(function (response) {
         if (response.data.status === "success") {
-          localStorage.setItem("linkTreeToken", response.data.token);
-          navigate("/");
+          dispatch(login(response.data.user));
         } else {
           setErrorMsg(response.data.message);
         }
@@ -29,7 +37,7 @@ const Login = () => {
       });
   }
   return (
-    <div clas>
+    <div>
       <div className="container">
         <span> Login</span>
         <form className="form">

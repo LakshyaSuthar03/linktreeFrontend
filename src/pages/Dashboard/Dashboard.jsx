@@ -5,11 +5,11 @@ import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader
 import AnalyticCard from "../../../components/AnalyticCard/AnalyticCard";
 const Dashboard = () => {
   const [data, setData] = useState([]);
-  const userJwtTocken = localStorage.getItem("linkTreeToken");
+  const userJwtToken = localStorage.getItem("linkTreeToken");
   useEffect(() => {
     axios
       .post("http://localhost:3001/analytics/dashboard", {
-        userJwt: userJwtTocken,
+        userJwt: userJwtToken,
       })
       .then((response) => {
         setData(response.data.dashboardData);
@@ -17,7 +17,7 @@ const Dashboard = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [userJwtTocken]);
+  }, [userJwtToken]);
 
   return (
     <div>

@@ -42,7 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
+  color: var(--cccccc);
 }
 .linkContainer {
   margin-top: 2rem;
@@ -50,7 +50,6 @@
 .shareBtn {
   cursor: pointer;
   margin-left: 0.5rem;
-  background-color: var(--primary);
   border-radius: 0.2rem;
   padding: 0.1rem;
 }

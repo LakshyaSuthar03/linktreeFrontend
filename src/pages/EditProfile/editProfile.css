@@ -46,5 +46,5 @@
   margin-top: 3rem;
 }
 form input::placeholder {
-  color: #ee4e34 !important;
+  color: rgba(128, 128, 128, 0.666) !important;
 }

@@ -11,14 +11,12 @@ body {
 }
 
 :root {
-  --primary: #ee4e34;
-  --secondary: #fcedda;
-  --tertiary: #fcedda;
+  --primary: #1d1d1d;
+  --secondary: #1d1d1d;
+  --tertiary: #cccccc;
   --white: #ffffff;
 }
-/* Dark Navy Blue (#2c3e50)
-Light Gray (#f0f0f0)
-Teal Blue (#1abc9c) */
+
 .container {
   height: 100vh;
   width: 100vw;
@@ -52,7 +50,6 @@ input {
 .cta {
   width: auto;
   height: auto;
-  background-color: var(--tertiary);
   color: var(--primary);
   font-size: 16px;
   font-weight: 500;
@@ -61,10 +58,8 @@ input {
   border: 1px solid var(--primary);
   margin: 0 0.3rem;
   padding: 0.3rem;
+  min-width: 100px;
 }
 .registerCta {
   margin-top: 10px;
-}
-label {
-  color: #ee4e34;
 }

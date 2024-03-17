@@ -6,17 +6,24 @@ import Dashboard from "./Dashboard/Dashboard";
 import DynamicRoute from "./DynamicRoute";
 import EditProfile from "./EditProfile/EditProfile";
 import EditLinks from "./EditLinks/EditLinks";
-
+import { useSelector } from "react-redux";
+import ProtectedRoute from "../protectedRoutes/ProtectedRoute";
 const Main = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/edit/profile" element={<EditProfile />} />
+          <Route path="/edit/links" element={<EditLinks />} />
+        </Route>
+
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+
         <Route path="/get/:linktree" element={<DynamicRoute />} />
-        <Route path="/edit/profile" element={<EditProfile />} />
-        <Route path="/edit/links" element={<EditLinks />} />
       </Routes>
     </>
   );

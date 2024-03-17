@@ -5,10 +5,15 @@ import { BiLogOut } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { login, logout } from "../../src/slices/authSlice";
 const DashboardHeader = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const jwtToken = localStorage.getItem("linkTreeToken");
+  // const authStatus = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (!jwtToken) {
       navigate("/login");
@@ -28,49 +33,37 @@ const DashboardHeader = () => {
   }, []);
 
   function handleLogout() {
-    localStorage.removeItem("linkTreeToken");
-    navigate("/login");
+    dispatch(logout());
   }
   return (
     <>
       <div className="dashboardContainer">
         <div className="containerLeft">
+          <Link to={`/get/${userData?.handle}`}>
+            <button className="cta">Preview </button>
+          </Link>
+          <Link to={`/`}>
+            <button className="cta">Dashboard </button>
+          </Link>
           <Link to={"/edit/links"}>
-            <button className="cta">Edit Links</button>
+            <button className="cta">Links</button>
           </Link>
           <Link to={"/edit/profile"}>
-            <button className="cta">Edit Profile</button>
+            <button className="cta">Profile</button>
           </Link>
         </div>
         <div className="containerRight">
           <div className="porfileCta">
-            <div className="redirectLinkTree">
-              <Link
-                to={`/get/${userData?.handle}`}
-                style={{ color: "inherit", textDecoration: "inherit" }}
-              >
-                Preview LinkTree
-              </Link>
-              <Link
-                to={`/`}
-                style={{
-                  color: "inherit",
-                  textDecoration: "inherit",
-                  marginLeft: "1rem",
-                }}
-              >
-                Dashboard
-              </Link>
-            </div>
-
-            <div className="profileInfo">
-              <p className="profileTitle">{userData?.name}</p>
-            </div>
-            <Link to={`/edit/profile`}>
-              <div className="avtar">
-                <img src={userData?.avatar} />
+            <div className="profileInfoContainer">
+              <div className="profileInfo">
+                <p className="profileTitle">{userData?.name}</p>
               </div>
-            </Link>
+              <Link to={`/edit/profile`}>
+                <div className="avtar">
+                  <img src={userData?.avatar} />
+                </div>
+              </Link>
+            </div>
             <div className="logout">
               <BiLogOut onClick={handleLogout} />
             </div>

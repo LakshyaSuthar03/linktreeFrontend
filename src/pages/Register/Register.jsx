@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import "./register.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login, logout } from "../../slices/authSlice";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [handle, setHandle] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   function handleSubmit(e) {
     setErrorMsg("");
     try {
@@ -22,7 +25,7 @@ const Register = () => {
         .then(function (response) {
           localStorage.setItem("linkTreeToken", response.data.token);
           if (response.data.status === "success") {
-            navigate("/login");
+            dispatch(login());
           } else {
             setErrorMsg(response.data.message);
           }
