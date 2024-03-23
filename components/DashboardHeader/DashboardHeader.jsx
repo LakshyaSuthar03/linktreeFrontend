@@ -51,6 +51,9 @@ const DashboardHeader = () => {
           <Link to={"/edit/profile"}>
             <button className="cta">Profile</button>
           </Link>
+          <Link to={"/themes/get"}>
+            <button className="cta">Themes</button>
+          </Link>
         </div>
         <div className="containerRight">
           <div className="porfileCta">

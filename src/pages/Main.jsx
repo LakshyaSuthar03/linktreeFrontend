@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import DynamicRoute from "./DynamicRoute";
 import EditProfile from "./EditProfile/EditProfile";
 import EditLinks from "./EditLinks/EditLinks";
+import Themes from "./Themes/Themes";
 import { useSelector } from "react-redux";
 import ProtectedRoute from "../protectedRoutes/ProtectedRoute";
 const Main = () => {
@@ -18,6 +19,7 @@ const Main = () => {
           <Route path="/" element={<Dashboard />} />
           <Route path="/edit/profile" element={<EditProfile />} />
           <Route path="/edit/links" element={<EditLinks />} />
+          <Route path="/themes/get" element={<Themes />} />
         </Route>
 
         <Route path="/register" element={<Register />} />

@@ -26,8 +26,10 @@ const Login = () => {
         password: password,
       })
       .then(function (response) {
+        console.log(response);
         if (response.data.status === "success") {
-          dispatch(login(response.data.user));
+          localStorage.setItem("linkTreeToken", response.data.token);
+          dispatch(login());
         } else {
           setErrorMsg(response.data.message);
         }

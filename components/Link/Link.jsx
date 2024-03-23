@@ -4,16 +4,26 @@ import "../../public/styles.css";
 import { Link as Link1 } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const Link = ({ linkData }) => {
+const Link = ({ linkData, colors }) => {
+  console.log(colors);
   return (
     <>
-      <motion.div className="link" animate={{ y: 10 }}>
+      <motion.div
+        className="link"
+        animate={{ y: 10 }}
+        style={{ backgroundColor: colors[2] }}
+      >
         <Link1
           to={`https://${linkData.url}`}
           target="_blank"
-          style={{ color: "inherit", textDecoration: "inherit" }}
+          style={{
+            color: "inherit",
+            textDecoration: "inherit",
+          }}
         >
-          <div className="linkTitle">{linkData.title}</div>
+          <div className="linkTitle" style={{ color: colors[1] }}>
+            {linkData.title}
+          </div>
         </Link1>
       </motion.div>
     </>

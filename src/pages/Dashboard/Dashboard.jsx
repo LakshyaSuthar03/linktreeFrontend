@@ -3,9 +3,11 @@ import axios from "axios";
 import "./dashboard.css";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import AnalyticCard from "../../../components/AnalyticCard/AnalyticCard";
+
 const Dashboard = () => {
   const [data, setData] = useState([]);
   const userJwtToken = localStorage.getItem("linkTreeToken");
+
   useEffect(() => {
     axios
       .post("http://localhost:3001/analytics/dashboard", {

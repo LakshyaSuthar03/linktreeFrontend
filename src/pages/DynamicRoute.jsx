@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { LinkTree } from "./LinkTree/LinkTree";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
+import { useSelector } from "react-redux";
 
 const DynamicRoute = () => {
   const [userData, setUserData] = useState({});
   const params = useParams();
   const jwtToken = localStorage.getItem("linkTreeToken");
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   useEffect(() => {
     if (params.linktree) {
       axios
@@ -25,7 +27,7 @@ const DynamicRoute = () => {
         });
     }
   }, []);
-  if (!jwtToken) {
+  if (!isAuthenticated) {
     return (
       <>
         <LinkTree data={userData} />

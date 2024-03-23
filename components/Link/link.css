@@ -2,7 +2,6 @@
   height: 2rem;
   width: 50vw;
 
-  background-color: var(--tertiary);
   border-radius: 5rem;
   margin: 0.8rem 0;
   text-decoration: none !important;
@@ -13,6 +12,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--primary);
+
   font-weight: 500;
 }

@@ -2,7 +2,8 @@ import React from "react";
 import "./socialmedia.css";
 import "../../public/styles.css";
 import { Link } from "react-router-dom";
-const Sociamedia = ({ socialData }) => {
+import { v4 as uuidv4 } from "uuid";
+const Sociamedia = ({ socialData, colors }) => {
   return (
     <>
       <div className="socialmediaContainer">
@@ -11,7 +12,7 @@ const Sociamedia = ({ socialData }) => {
 
           if (i < social.length) {
             return (
-              <Link to={`http://${url}`} key={i} target="_blank">
+              <Link to={`http://${url}`} key={uuidv4()} target="_blank">
                 <img src={`../images/svg/${social}.svg`} />
               </Link>
             );
