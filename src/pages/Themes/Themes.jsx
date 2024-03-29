@@ -7,10 +7,10 @@ import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader
 
 const Themes = () => {
   const [themes, setThemes] = useState([]);
-  const [palletName, setPalletName] = useState("");
-  const [primary, setPrimary] = useState("");
-  const [secondary, setSecondary] = useState("");
-  const [tertiary, setTertiary] = useState("");
+  const [palletName, setPalletName] = useState(`theme${uuidv4()}`);
+  const [primary, setPrimary] = useState("#1d1d1d");
+  const [secondary, setSecondary] = useState("#1d1d1d");
+  const [tertiary, setTertiary] = useState("#cccccc");
   const userJwtToken = localStorage.getItem("linkTreeToken");
 
   useEffect(() => {
@@ -25,8 +25,6 @@ const Themes = () => {
   }, [userJwtToken]);
 
   const addPallet = (e) => {
-    e.preventDefault();
-
     // Validate palletName - should only contain strings
     if (typeof palletName !== "string") {
       alert("Pallet name should be a string.");
@@ -68,7 +66,7 @@ const Themes = () => {
         </div>
         <div className="themesContainerRight">
           <form>
-            <p>Add Pallet</p>
+            <p>Add Theme</p>
             <input
               type="text"
               placeholder="pallet name"
@@ -78,7 +76,7 @@ const Themes = () => {
               }}
             />
             <input
-              type="text"
+              type="color"
               placeholder="primary"
               value={primary}
               onChange={(e) => {
@@ -86,7 +84,7 @@ const Themes = () => {
               }}
             />
             <input
-              type="text"
+              type="color"
               placeholder="secondary"
               value={secondary}
               onChange={(e) => {
@@ -94,7 +92,7 @@ const Themes = () => {
               }}
             />
             <input
-              type="text"
+              type="color"
               placeholder="tertiary"
               value={tertiary}
               onChange={(e) => {

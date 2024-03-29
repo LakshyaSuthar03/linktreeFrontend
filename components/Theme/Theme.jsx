@@ -19,6 +19,24 @@ const Theme = (props) => {
         console.log(error);
       });
   };
+  const deleteTheme = (e) => {
+    axios
+      .post("http://localhost:3001/themes/delete", {
+        id: e.target.id,
+        userJwtToken: jwt,
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.data.status == "success") {
+          window.location.reload();
+        } else {
+          alert(response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="themeContainer">
       <div className="themeName">{props.styles.name}</div>
@@ -42,6 +60,15 @@ const Theme = (props) => {
         }}
       >
         Apply
+      </button>
+      <button
+        className="cta"
+        id={props.styles._id}
+        onClick={(e) => {
+          deleteTheme(e);
+        }}
+      >
+        Delete
       </button>
     </div>
   );
