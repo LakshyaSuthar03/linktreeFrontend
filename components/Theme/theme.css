@@ -1,7 +1,6 @@
 .themeContainer {
-  width: 100vw;
-  padding-left: 50px;
-  padding-top: 50px;
+  width: max-content;
+  margin-bottom: 50px;
 }
 .color {
   height: 100px;

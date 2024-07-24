@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { base } from "../../../config.json";
 import "./dashboard.css";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import AnalyticCard from "../../../components/AnalyticCard/AnalyticCard";
@@ -10,7 +11,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/analytics/dashboard", {
+      .post(`${base}/analytics/dashboard`, {
         userJwt: userJwtToken,
       })
       .then((response) => {

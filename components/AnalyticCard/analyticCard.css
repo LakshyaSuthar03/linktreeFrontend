@@ -1,6 +1,6 @@
 .analyticsCard {
-  height: 13rem;
-  width: 20rem;
+width: 20rem;
+height: 10rem;
   background-color: var(--tertiary);
   border-radius: 1rem;
   padding: 1rem;
@@ -21,4 +21,12 @@
   align-items: center;
   justify-content: center;
   font-size: 50px;
+}
+
+@media (max-width: 768px) {
+  .analyticsCard {
+    width: 80vw;
+    height: 10rem;
+  }
+
 }

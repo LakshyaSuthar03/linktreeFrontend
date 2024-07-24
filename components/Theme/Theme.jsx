@@ -2,11 +2,12 @@ import React from "react";
 import "./theme.css";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { base } from "../../config.json";
 const Theme = (props) => {
   const jwt = localStorage.getItem("linkTreeToken");
   const applyTheme = (style) => {
     axios
-      .post("http://localhost:3001/themes/change", {
+      .post(`${base}/themes/change`, {
         theme: style,
         jwtToken: jwt,
       })
@@ -21,7 +22,7 @@ const Theme = (props) => {
   };
   const deleteTheme = (e) => {
     axios
-      .post("http://localhost:3001/themes/delete", {
+      .post(`${base}/themes/delete`, {
         id: e.target.id,
         userJwtToken: jwt,
       })

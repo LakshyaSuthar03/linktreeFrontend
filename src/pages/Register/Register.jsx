@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./register.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { base } from "../../../config.json";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const Register = () => {
       e.preventDefault();
 
       axios
-        .post("http://localhost:3001/auth/register", {
+        .post(`${base}/auth/register`, {
           email: email,
           password: password,
           handle: handle,
@@ -86,10 +87,14 @@ const Register = () => {
           >
             Register
           </button>
-          Alredy have an account?{" "}
-          <Link style={{ color: "black" }} to="/login">
-            Login
-          </Link>
+          <div className="authLastSection">
+            <p>
+              Alredy have an account?{" "}
+              <Link style={{ color: "black" }} to="/login">
+                Login
+              </Link>
+            </p>
+          </div>
         </form>
         <div className="errorMessage">{errorMsg}</div>
       </div>

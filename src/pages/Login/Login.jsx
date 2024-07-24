@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "../../slices/authSlice";
 import axios from "axios";
+import { base } from "../../../config.json";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +22,7 @@ const Login = () => {
     setErrorMsg("");
     e.preventDefault();
     axios
-      .post("http://localhost:3001/auth/login", {
+      .post(`${base}/auth/login`, {
         email: email,
         password: password,
       })
@@ -74,10 +75,14 @@ const Login = () => {
           >
             Login
           </button>
-          Do not have an account?
-          <Link style={{ color: "black" }} to="/register">
-            Register
-          </Link>
+          <div className="authLastSection">
+            <p>
+              Dont have an account?{" "}
+              <Link style={{ color: "black" }} to="/register">
+                Register
+              </Link>
+            </p>
+          </div>
         </form>
         <div className="errorMessage">{errorMsg}</div>
       </div>

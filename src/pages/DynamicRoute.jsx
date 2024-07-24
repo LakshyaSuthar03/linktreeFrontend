@@ -5,6 +5,7 @@ import axios from "axios";
 import { LinkTree } from "./LinkTree/LinkTree";
 import DashboardHeader from "../../components/DashboardHeader/DashboardHeader";
 import { useSelector } from "react-redux";
+import { base } from "../../config.json";
 
 const DynamicRoute = () => {
   const [userData, setUserData] = useState({});
@@ -14,7 +15,7 @@ const DynamicRoute = () => {
   useEffect(() => {
     if (params.linktree) {
       axios
-        .get(`http://localhost:3001/get/${params.linktree}`, {
+        .get(`${base}/get/${params.linktree}`, {
           headers: { jwtToken: jwtToken },
         })
         .then(function (response) {

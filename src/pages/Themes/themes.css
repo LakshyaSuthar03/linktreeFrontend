@@ -5,18 +5,33 @@
 }
 .themesContainerLeft {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  flex: 1;
   width: 100%;
-  margin: auto;
+
 }
 .themesContainerRight {
   display: flex;
   flex-direction: column;
   flex: 1;
+  display: none;
 }
 .themesContainerRight form {
   border: none;
   height: 100%;
   width: 100%;
+}
+
+.themesContainerRight > form input {
+  width: 50%;
+} 
+.addTheme{
+  position: fixed;
+  top: 20%;
+  right: 30%;
+  transform-origin: 0% 50%;
+  font-size: 48px;
+  cursor: pointer;
+  
 }

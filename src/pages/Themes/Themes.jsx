@@ -4,7 +4,8 @@ import Theme from "../../../components/Theme/Theme";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
-
+import { base } from "../../../config.json";
+import { IoIosAddCircle } from "react-icons/io";
 const Themes = () => {
   const [themes, setThemes] = useState([]);
   const [palletName, setPalletName] = useState(`theme${uuidv4()}`);
@@ -15,7 +16,7 @@ const Themes = () => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/themes/get", { jwt: userJwtToken })
+      .post(`${base}/themes/get`, { jwt: userJwtToken })
       .then((response) => {
         setThemes(response.data.userThemes.themes);
       })
@@ -46,7 +47,7 @@ const Themes = () => {
       colors: [primary, secondary, tertiary],
     };
     axios
-      .post("http://localhost:3001/themes/add", { newPallet, userJwtToken })
+      .post(`${base}/themes/add`, { newPallet, userJwtToken })
       .then((response) => {
         console.log(response);
       })
@@ -60,6 +61,9 @@ const Themes = () => {
       <DashboardHeader />
       <div className="themesContainer">
         <div className="themesContainerLeft">
+          <div className="addTheme">
+            <IoIosAddCircle />
+          </div>
           {themes.map((theme) => {
             return <Theme styles={theme} key={uuidv4()} />;
           })}

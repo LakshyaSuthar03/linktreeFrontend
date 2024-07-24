@@ -7,10 +7,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../../src/slices/authSlice";
+import { base } from "../../config.json";
+import { GiHamburgerMenu } from "react-icons/gi";
 const DashboardHeader = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const jwtToken = localStorage.getItem("linkTreeToken");
+  const [showMenu, setShowMenu] = useState(false);
   // const authStatus = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
 
@@ -19,7 +22,7 @@ const DashboardHeader = () => {
       navigate("/login");
     }
     axios
-      .post("http://localhost:3001/data/dashboard", {
+      .post(`${base}/data/dashboard`, {
         userJwt: jwtToken,
       })
       .then(function (response) {
@@ -38,7 +41,18 @@ const DashboardHeader = () => {
   return (
     <>
       <div className="dashboardContainer">
-        <div className="containerLeft">
+        <div
+          className="hamburgerMenu"
+          onClick={() => {
+            setShowMenu((prev) => !prev);
+          }}
+        >
+          <GiHamburgerMenu />
+        </div>
+        <div
+          className="containerLeft"
+          style={showMenu ? { top: "0" } : { top: "-100%" }}
+        >
           <Link to={`/get/${userData?.handle}`}>
             <button className="cta">Preview </button>
           </Link>

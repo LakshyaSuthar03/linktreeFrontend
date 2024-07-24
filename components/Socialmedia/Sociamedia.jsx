@@ -7,17 +7,19 @@ const Sociamedia = ({ socialData, colors }) => {
   return (
     <>
       <div className="socialmediaContainer">
-        {Object.keys(socialData).map((social, i) => {
-          const url = Object.values(socialData)[i];
+        <div className="svgs">
+          {Object.keys(socialData).map((social, i) => {
+            const url = Object.values(socialData)[i];
 
-          if (i < social.length) {
-            return (
-              <Link to={`http://${url}`} key={uuidv4()} target="_blank">
-                <img src={`../images/svg/${social}.svg`} />
-              </Link>
-            );
-          }
-        })}
+            if (i < social.length) {
+              return (
+                <Link to={`http://${url}`} key={uuidv4()} target="_blank">
+                  <img src={`../images/svg/${social}.svg`} />
+                </Link>
+              );
+            }
+          })}
+        </div>
       </div>
     </>
   );

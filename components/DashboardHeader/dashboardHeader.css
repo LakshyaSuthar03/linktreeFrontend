@@ -47,3 +47,52 @@
   margin: 0 1rem;
   cursor: pointer;
 }
+.hamburgerMenu{
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .dashboardContainer {
+    padding: 0 1rem;
+  }
+  .avtar {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  .hamburgerMenu{
+    display: block;
+    cursor: pointer;
+    position: relative;
+    z-index: 999;
+  }
+  
+  .containerLeft{
+    width: 100%;
+    position: absolute;
+    top: 10;
+    left: 0;
+    padding:  70px 10px 15px 10px ;
+    display: flex;
+    flex-direction: column;
+    background: var(--primary);
+    border-radius: 0 0 20px 20px  ;
+    transition: top 0.5s ease-in-out;
+    z-index: 1;
+  }
+  .cta{
+    width: 100%;
+    margin: 0  0  10px 0 ;
+  }
+  .containerRight {
+    margin-left: auto;
+  }
+  .profileTitle,
+  .redirectLinkTree {
+    font-size: x-small;
+  }
+  .profileInfo {
+    padding: 5px 3px;
+  }
+  .logout {
+    margin: 0 0.5rem;
+  }
+}

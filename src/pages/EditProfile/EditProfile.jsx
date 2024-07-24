@@ -3,6 +3,7 @@ import "./editProfile.css";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { base } from "../../../config.json";
 
 const EditProfile = () => {
   const [name, setName] = useState("");
@@ -20,7 +21,7 @@ const EditProfile = () => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/edit/profile", {
+      .post(`${base}/edit/profile`, {
         jwtToken: jwtToken,
       })
       .then(function (response) {
@@ -47,7 +48,7 @@ const EditProfile = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:3001/edit/profile", {
+      .post(`${base}/edit/profile`, {
         name: name,
         bio: bio,
         avatar: avatar,
@@ -63,7 +64,7 @@ const EditProfile = () => {
   function handleSocialsSubmit(e) {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/edit/socials", {
+      .post(`${base}/edit/socials`, {
         socials: {
           facebook: `${facebook}`,
           twitter: `${twitter}`,

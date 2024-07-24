@@ -3,6 +3,8 @@ import "./editLink.css";
 import axios from "axios";
 import DashboardHeader from "../DashboardHeader/DashboardHeader";
 import { useNavigate } from "react-router-dom";
+import { base } from "../../config.json";
+import { IoTrashBin } from "react-icons/io5";
 export const EditLink = () => {
   const [links, setLinks] = useState([
     { title: "default", url: "default.com" },
@@ -15,7 +17,7 @@ export const EditLink = () => {
       navigate("/login");
     }
     axios
-      .post("http://localhost:3001/data/dashboard", {
+      .post(`${base}/data/dashboard`, {
         userJwt: jwtToken,
       })
       .then(function (response) {
@@ -57,7 +59,7 @@ export const EditLink = () => {
     event.preventDefault();
 
     axios
-      .post("http://localhost:3001/edit/links", {
+      .post(`${base}/edit/links`, {
         links: links,
         userJwt: jwtToken,
       })
@@ -98,13 +100,9 @@ export const EditLink = () => {
               </div>
             </div>
             {index ? (
-              <button
-                type="button"
-                className="cta remove"
-                onClick={() => removeFormFields(index)}
-              >
-                Remove
-              </button>
+              <div onClick={() => removeFormFields(index)} className="remove">
+                <IoTrashBin />
+              </div>
             ) : null}
           </div>
         ))}

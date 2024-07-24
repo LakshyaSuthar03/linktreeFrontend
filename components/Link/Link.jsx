@@ -5,7 +5,6 @@ import { Link as Link1 } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Link = ({ linkData, colors }) => {
-  console.log(colors);
   return (
     <>
       <motion.div
