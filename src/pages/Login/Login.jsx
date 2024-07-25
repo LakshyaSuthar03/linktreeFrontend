@@ -68,11 +68,7 @@ const Login = () => {
               required
             />
           </div>
-          <button
-            className="cta registerCta"
-            type="submit"
-            onClick={handleSubmit}
-          >
+          <button className="cta loginCta" type="submit" onClick={handleSubmit}>
             Login
           </button>
           <div className="authLastSection">
