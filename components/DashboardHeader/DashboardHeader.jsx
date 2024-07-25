@@ -14,7 +14,6 @@ const DashboardHeader = () => {
   const [userData, setUserData] = useState({});
   const jwtToken = localStorage.getItem("linkTreeToken");
   const [showMenu, setShowMenu] = useState(false);
-  // const authStatus = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,6 +27,14 @@ const DashboardHeader = () => {
       .then(function (response) {
         if (response.data.status === "success") {
           setUserData(response.data.userDetails);
+          localStorage.setItem(
+            "name",
+            JSON.stringify(response.data.userDetails.name)
+          );
+          localStorage.setItem(
+            "avatar",
+            JSON.stringify(response.data.userDetails.avatar)
+          );
         }
       })
       .catch(function (error) {
@@ -76,7 +83,7 @@ const DashboardHeader = () => {
                 <p className="profileTitle">{userData?.name}</p>
               </div>
               <Link to={`/edit/profile`}>
-                <div className="avtar">
+                <div className="avatar">
                   <img src={userData?.avatar} />
                 </div>
               </Link>
