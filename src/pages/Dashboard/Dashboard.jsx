@@ -4,9 +4,11 @@ import { base } from "../../../config.json";
 import "./dashboard.css";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import AnalyticCard from "../../../components/AnalyticCard/AnalyticCard";
+import Loader from "../../../components/Loader/Loader";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const userJwtToken = localStorage.getItem("linkTreeToken");
 
   useEffect(() => {
@@ -16,6 +18,7 @@ const Dashboard = () => {
       })
       .then((response) => {
         setData(response.data.dashboardData);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -25,6 +28,7 @@ const Dashboard = () => {
   return (
     <div>
       <DashboardHeader />
+      {loading ? <Loader /> : null}
       <div className="analyticCardContainer">
         <div className="analyticCardContainerInner">
           {data.map((stats) => {

@@ -6,12 +6,16 @@ import { v4 as uuidv4 } from "uuid";
 import DashboardHeader from "../../../components/DashboardHeader/DashboardHeader";
 import { base } from "../../../config.json";
 import { IoIosAddCircle } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
+import Loader from "../../../components/Loader/Loader";
 const Themes = () => {
   const [themes, setThemes] = useState([]);
   const [palletName, setPalletName] = useState(`theme${uuidv4()}`);
   const [primary, setPrimary] = useState("#1d1d1d");
   const [secondary, setSecondary] = useState("#1d1d1d");
   const [tertiary, setTertiary] = useState("#cccccc");
+  const [addThemeToggle, setAddThemeToggle] = useState(false);
+  const [loading, setLoading] = useState(true);
   const userJwtToken = localStorage.getItem("linkTreeToken");
 
   useEffect(() => {
@@ -19,6 +23,7 @@ const Themes = () => {
       .post(`${base}/themes/get`, { jwt: userJwtToken })
       .then((response) => {
         setThemes(response.data.userThemes.themes);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -59,56 +64,76 @@ const Themes = () => {
   return (
     <>
       <DashboardHeader />
-      <div className="themesContainer">
-        <div className="themesContainerLeft">
-          <div className="addTheme">
-            <IoIosAddCircle />
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="themesContainer">
+          <div className="themesContainerLeft">
+            <div
+              className="addTheme"
+              onClick={() => {
+                setAddThemeToggle((prev) => !prev);
+              }}
+            >
+              <IoIosAddCircle fill="#000" />
+            </div>
+            {themes.map((theme) => {
+              return <Theme styles={theme} key={uuidv4()} />;
+            })}
           </div>
-          {themes.map((theme) => {
-            return <Theme styles={theme} key={uuidv4()} />;
-          })}
+          <div
+            className="themesContainerRight"
+            style={addThemeToggle ? { display: "block" } : { display: "none" }}
+          >
+            <div
+              className="close"
+              onClick={() => {
+                setAddThemeToggle((prev) => !prev);
+              }}
+            >
+              <IoClose />
+            </div>
+            <form>
+              <p>Add Theme</p>
+              <input
+                type="text"
+                placeholder="pallet name"
+                value={palletName}
+                onChange={(e) => {
+                  setPalletName(e.target.value);
+                }}
+              />
+              <input
+                type="color"
+                placeholder="primary"
+                value={primary}
+                onChange={(e) => {
+                  setPrimary(e.target.value);
+                }}
+              />
+              <input
+                type="color"
+                placeholder="secondary"
+                value={secondary}
+                onChange={(e) => {
+                  setSecondary(e.target.value);
+                }}
+              />
+              <input
+                type="color"
+                placeholder="tertiary"
+                value={tertiary}
+                onChange={(e) => {
+                  setTertiary(e.target.value);
+                }}
+              />
+              <button className="cta" onClick={addPallet}>
+                Add
+              </button>
+            </form>
+          </div>
         </div>
-        <div className="themesContainerRight">
-          <form>
-            <p>Add Theme</p>
-            <input
-              type="text"
-              placeholder="pallet name"
-              value={palletName}
-              onChange={(e) => {
-                setPalletName(e.target.value);
-              }}
-            />
-            <input
-              type="color"
-              placeholder="primary"
-              value={primary}
-              onChange={(e) => {
-                setPrimary(e.target.value);
-              }}
-            />
-            <input
-              type="color"
-              placeholder="secondary"
-              value={secondary}
-              onChange={(e) => {
-                setSecondary(e.target.value);
-              }}
-            />
-            <input
-              type="color"
-              placeholder="tertiary"
-              value={tertiary}
-              onChange={(e) => {
-                setTertiary(e.target.value);
-              }}
-            />
-            <button className="cta" onClick={addPallet}>
-              Add
-            </button>
-          </form>
-        </div>
-      </div>
+      )}
     </>
   );
 };

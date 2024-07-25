@@ -1,0 +1,9 @@
+.loader{
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
